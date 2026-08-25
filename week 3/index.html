@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weather App</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <div class="weather-card">
+
+            <div class="header">
+                <p class="subtitle">WEATHER APP</p>
+
+                <h1>Check the Weather</h1>
+
+                <p class="description">
+                    Enter a city to see its current weather conditions.
+                </p>
+            </div>
+
+
+            <!-- Search Section -->
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Enter city name..."
+                    autocomplete="off"
+                >
+
+                <button id="searchButton">
+                    Search
+                </button>
+
+            </div>
+
+
+            <!-- Loading Message -->
+
+            <p id="loading" class="loading hidden">
+                Loading weather...
+            </p>
+
+
+            <!-- Error Message -->
+
+            <p id="errorMessage" class="error hidden">
+                City not found. Please try again.
+            </p>
+
+
+            <!-- Weather Information -->
+
+            <section id="weatherResult" class="weather-result hidden">
+
+                <div class="location">
+
+                    <h2 id="cityName">City</h2>
+
+                    <p id="countryName">Country</p>
+
+                </div>
+
+
+                <div class="weather-main">
+
+                    <img
+                        id="weatherIcon"
+                        src=""
+                        alt="Weather icon"
+                    >
+
+                    <div>
+
+                        <p id="temperature" class="temperature">
+                            --°C
+                        </p>
+
+                        <p id="condition">
+                            Condition
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Weather Details -->
+
+                <div class="weather-details">
+
+                    <div class="detail-card">
+
+                        <span class="detail-icon">💧</span>
+
+                        <div>
+                            <p class="detail-label">Humidity</p>
+
+                            <p id="humidity" class="detail-value">
+                                --%
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-card">
+
+                        <span class="detail-icon">🌡️</span>
+
+                        <div>
+                            <p class="detail-label">Feels Like</p>
+
+                            <p id="feelsLike" class="detail-value">
+                                --°C
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-card">
+
+                        <span class="detail-icon">💨</span>
+
+                        <div>
+                            <p class="detail-label">Wind Speed</p>
+
+                            <p id="windSpeed" class="detail-value">
+                                -- m/s
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <footer>
+                <p>Powered by OpenWeatherMap</p>
+            </footer>
+
+        </div>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
