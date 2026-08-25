@@ -1,0 +1,403 @@
+/* -------------------------------------------------------------
+ * Global Design Tokens & Resets
+ * ----------------------------------------------------------- */
+:root {
+  --bg-dark: #0f172a;
+  --panel-bg: #1e293b;
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --panel-header: rgba(30, 41, 59, 0.85);
+  
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --primary-bubble: #2563eb;
+  
+  --completed-bg: #1e293b;
+  --completed-border: #334155;
+  --completed-text: #94a3b8;
+  
+  --text-main: #f8fafc;
+  --text-muted: #64748b;
+  --danger: #f43f5e;
+  --danger-hover: #fb7185;
+  
+  --radius-lg: 20px;
+  --radius-bubble: 18px;
+  --shadow-panel: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  
+  --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background: radial-gradient(circle at top right, #1e1b4b, #0f172a 70%);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* -------------------------------------------------------------
+ * Main Application Container
+ * ----------------------------------------------------------- */
+.app-container {
+  width: 100%;
+  max-width: 520px;
+  height: 680px;
+  background-color: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  backdrop-filter: blur(12px);
+}
+
+/* -------------------------------------------------------------
+ * Header & Navigation
+ * ----------------------------------------------------------- */
+.app-header {
+  padding: 1.1rem 1.25rem;
+  background-color: var(--panel-header);
+  border-bottom: 1px solid var(--panel-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(8px);
+  z-index: 10;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar-status {
+  position: relative;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+.online-indicator {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 10px;
+  height: 10px;
+  background-color: #10b981;
+  border: 2px solid var(--panel-bg);
+  border-radius: 50%;
+}
+
+.app-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.app-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+/* Filter Buttons */
+.filter-group {
+  display: flex;
+  gap: 0.25rem;
+  background-color: rgba(15, 23, 42, 0.6);
+  padding: 3px;
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #94a3b8;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.filter-btn:hover {
+  color: #fff;
+}
+
+.filter-btn.active {
+  background-color: var(--primary);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
+}
+
+/* -------------------------------------------------------------
+ * Chat Stream & Tasks
+ * ----------------------------------------------------------- */
+.chat-feed {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  scroll-behavior: smooth;
+}
+
+.chat-feed::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-feed::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+/* Empty State */
+.empty-state {
+  margin: auto;
+  text-align: center;
+  color: var(--text-muted);
+}
+.empty-state .icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+.empty-state p {
+  font-size: 0.85rem;
+}
+
+/* Task Item Row */
+.task-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  animation: slideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Delete Trigger */
+.delete-btn {
+  opacity: 0;
+  background: transparent;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-row:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  background-color: rgba(244, 63, 94, 0.15);
+  color: var(--danger-hover);
+}
+
+/* Message Bubble */
+.task-bubble {
+  max-width: 82%;
+  min-width: 140px;
+  padding: 0.75rem 0.95rem;
+  background-color: var(--primary-bubble);
+  border-radius: var(--radius-bubble) var(--radius-bubble) 4px var(--radius-bubble);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s ease;
+}
+
+.task-bubble.completed {
+  background-color: rgba(15, 23, 42, 0.75);
+  border: 1px solid var(--completed-border);
+  box-shadow: none;
+}
+
+.task-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+/* Checkbox Styling */
+.task-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 17px;
+  height: 17px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  margin-top: 2px;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.task-checkbox:checked {
+  background-color: #10b981;
+  border-color: #10b981;
+}
+
+.task-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  left: 2px;
+  top: -1px;
+}
+
+/* Task Content */
+.task-text {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  word-break: break-word;
+  color: #ffffff;
+  transition: color 0.2s ease;
+}
+
+.task-bubble.completed .task-text {
+  text-decoration: line-through;
+  color: var(--completed-text);
+}
+
+.task-time {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.65);
+  text-align: right;
+  margin-top: 4px;
+}
+
+.task-bubble.completed .task-time {
+  color: var(--text-muted);
+}
+
+/* -------------------------------------------------------------
+ * Footer & Input Bar
+ * ----------------------------------------------------------- */
+.app-footer {
+  padding: 0.85rem 1.25rem;
+  background-color: rgba(15, 23, 42, 0.9);
+  border-top: 1px solid var(--panel-border);
+}
+
+.task-form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.input-wrapper {
+  flex: 1;
+}
+
+.task-input {
+  width: 100%;
+  background-color: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  color: #fff;
+  font-size: 0.88rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.task-input::placeholder {
+  color: var(--text-muted);
+}
+
+.send-btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.send-btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.send-btn:active {
+  transform: translateY(1px);
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  body {
+    padding: 0;
+  }
+  .app-container {
+    height: 100vh;
+    border-radius: 0;
+    border: none;
+  }
+}
